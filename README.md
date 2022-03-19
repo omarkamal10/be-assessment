@@ -1,58 +1,32 @@
-# Backend Assessment
+# Bost Assessment API
 
-Build an uptime monitoring RESTful API server that allows authenticated users to monitor URLs, and get detailed uptime reports about their availability, average response time, and total uptime/downtime.
+A Node.js-based RESTful API for for tracking the uptime of user-specified websites. It will allow a user to enter a URL that they want monitored and receive alerts when those resources go down or come back up. Functionality will be included for sending Email notifications to a user. Users will be able to sign up, sign in.
 
-## Overview
+## Setup
 
-- Signup with email verification.
-- CRUD operations for URL checks (`GET`, `PUT` and `DELETE` can be called only by the user user who created the check).
-- Authenticated users can receive a notification whenever one of their URLs goes down or up again:
-  - Email.
-  - Webhook *(optional)*.
-- Authenticated users can get detailed uptime reports about their URLs availability, average response time, and total uptime/downtime.
-- Authenticated users can group their checks by tags and get reports by tag.
+### Installation and Starting up Locally
 
-## Acceptance Criteria
+1. Install node dependencies ➡ `npm install`
+2. Create a new database with `bostaDB` name on PostgreSQL
+3. Edit the database connection configuration in `.env` file
+4. Database initialize ➡ `npm run database:init`
+5. Development run ➡ `npm run dev` || Production run ➡ `npm run start`
 
-- APIs should be consuming and producing `application/json`.
-- Authenication should be stateless.
-- Each URL check may have the following options:
-  - `name`: The name of the check.
-  - `url`: The URL to be monitored.
-  - `protocol`: The resource protocol name `HTTP`, `HTTPS`, or `TCP`.
-  - `path`: A specific path to be monitored *(optional)*.
-  - `port`: The server port number *(optional)*.
-  - `webhook`: A webhook URL to receive a notification on *(optional)*.
-  - `timeout` *(defaults to 5 seconds)*: The timeout of the polling request *(optional)*.
-  - `interval` *(defaults to 10 minutes)*: The time interval for polling requests *(optional)*.
-  - `threshold` *(defaults to 1 failure)*: The threshold of failed requests that will create an alert *(optional)*.
-  - `authentication`: An HTTP authentication header, with the Basic scheme, to be sent with the polling request *(optional)*.
-    - `authentication.username`
-    - `authentication.password`
-  - `httpHeaders`: A list of key/value pairs custom HTTP headers to be sent with the polling request (optional).
-  - `assert`: The response assertion to be used on the polling response (optional).
-    - `assert.statusCode`: An HTTP status code to be asserted.
-  - `tags`: A list of the check tags (optional).
-  - `ignoreSSL`: A flag to ignore broken/expired SSL certificates in case of using the HTTPS protocol.
-- Each report may have the following information:
-  - `status`: The current status of the URL.
-  - `availability`: A percentage of the URL availability.
-  - `outages`: The total number of URL downtimes.
-  - `downtime`: The total time, in seconds, of the URL downtime.
-  - `uptime`: The total time, in seconds, of the URL uptime.
-  - `responseTime`: The average response time for the URL.
-  - `history`: Timestamped logs of the polling requests.
+### NPM scripts
 
-## Evaluation Criteria
+1. npm run docker ➡ Docker runtime environment. (HAS UNRESOLVED ISSUES AT THE MOMENT SO RUN LOCAL ENVIRONMENT)
+2. npm run lint ➡ Run linter. (Checking for mistakes)
+3. npm run database:reset(To reset DB to original state after initializing)
 
-- Code quality.
-- Code scalability as we should be able to add a new alerting notification channel like Slack, Firebase, SMS, etc.. with the minimum possible changes.
-- Unit tests.
+- I left .env intentionally for you to test it right away and apologies for the poor documentation by hand was in a bit of a hurry :D
+- There is a postman collection in the docs folder
 
-## Bonus
+### Documentation
 
-- API documentation.
-- Docker and Docker Compose.
-- [Pushover](https://pushover.net/) integration to receive alerts on mobile devices.
+1. Postman (collection and environment) are provided in ./docs/Postman folder.
+2. Environment variables to be used:
 
-Try your best to implement as much as you can from the given requirements and feel free to add more if you want to.
+- A token variable -> Ex: "token" with value of token received when logging in
+- A url variable -> Ex: "base-URL" with value of "http://127.0.0.1:9000" and for each request add "/api/v1"
+
+- GET,UPDATE checks are made only by user who created the check

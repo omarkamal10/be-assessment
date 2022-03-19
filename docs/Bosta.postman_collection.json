@@ -1,0 +1,260 @@
+{
+	"info": {
+		"_postman_id": "e424b203-5506-4964-8bd7-8e8e97a13590",
+		"name": "Bosta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\":\"omarr\",\r\n    \"lastName\":\"omarr\",\r\n    \"userName\":\"omar\",\r\n    \"email\":\"fesikhe80@gmail.com\",\r\n    \"mobile\":\"1234rr\",\r\n    \"password\":\"1234\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{bosta-URL}}/api/v1/users/register",
+							"host": [
+								"{{bosta-URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"register"
+							]
+						},
+						"description": "Creating users with these required fields.\n\nIn addition to these fields, there are other optional fields:\n\n\\-dateOfBirth -> Ex: \"24-12-1990\"\n\n\\-middleName -> Ex: \"ahmed\""
+					},
+					"response": []
+				},
+				{
+					"name": "Verify User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{bosta-URL}}/api/v1/users/verify/1/9b616c8fbed87ff747087d22843ef9fe58c40e84e9006ebd22b225267cd8d0e5",
+							"host": [
+								"{{bosta-URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"verify",
+								"1",
+								"9b616c8fbed87ff747087d22843ef9fe58c40e84e9006ebd22b225267cd8d0e5"
+							]
+						},
+						"description": "When creating users, an email is sent with a link to verify the user and give the authority to do tasks that need authentication.\n\nVerfiying users in this format:\n\n/api/v1/users/verify/:userId/:token"
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\":\"omar\",\r\n    \"password\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{bosta-URL}}/api/v1/users/login",
+							"host": [
+								"{{bosta-URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"login"
+							]
+						},
+						"description": "Login user with password and userName.\n\n\\-In the resposne body:\n\n\\->token object\n\n\\->token object"
+					},
+					"response": []
+				}
+			],
+			"description": "Creating, verifying and logging in users"
+		},
+		{
+			"name": "URL checks",
+			"item": [
+				{
+					"name": "Create URL",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"google\",\r\n    \"url\":\"www.google.com\",\r\n    \"protocol\":\"https\",\r\n    \"tags\":\"search engine\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{bosta-URL}}/api/v1/url-check/create",
+							"host": [
+								"{{bosta-URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"url-check",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "URL Check",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"urlToCheckId\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{bosta-URL}}/api/v1/url-check/",
+							"host": [
+								"{{bosta-URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"url-check",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get checks by tag",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{bosta-URL}}/api/v1/url-check/tags/search",
+							"host": [
+								"{{bosta-URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"url-check",
+								"tags",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all URL Checsk",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{bosta-URL}}/api/v1/url-check/",
+							"host": [
+								"{{bosta-URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"url-check",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify URL",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

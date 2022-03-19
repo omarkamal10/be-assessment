@@ -1,0 +1,76 @@
+{
+  "ok": "تم",
+  "and": "و",
+
+  "server-error": "هناك خطأ ما",
+  "wrong-credentials": "بيانات اعتماد خاطئة",
+  "not-found": "لاتوجد بيانات",
+
+  "no-client": "العميل غير موجود ببيانات الاعتماد هذه",
+  "no-client-secret": "سر العميل خاطئ",
+  "error-token": "خطأ في استرداد الرمز المميز أو حفظه",
+  "token-expired": "رمز التحديث غير صالح أو منتهي الصلاحية",
+
+  "no-token": "لم يتم توفير رمز مميز",
+  "unauthorized": "غير مصرح به",
+  "forbidden": "محظور",
+  "no-employmentId": "لم يتم توفير معرّف للتوظيف",
+
+  "user-not-found": "لم يتم العثور على المستخدم",
+  "inactive-user": "تم إلغاء تنشيط المستخدم",
+  "used-email-with-roles": "البريد الإلكتروني موجود بالفعل بنفس الدور",
+  "used-username": "المستخدم موجود بالفعل",
+  "used-mobile": "رقم الهاتف المحمول موجود بالفعل",
+  "used-jobId": "معرف الوظيفة موجود مسبقا",
+  "identificationId-required": "معرف الجنسية مطلوب",
+  "used-identificationId": "معرف الجنسية موجود بالفعل",
+  "used-code": "اسم الرمز موجود بالفعل",
+
+  "jobId-required": "JobId مطلوب",
+
+  "employment-array-required": "مطلوب مصفوفة التوظيف",
+
+  "name-required": "مطلوب اسم",
+  "used-name": "الاسم موجود بالفعل",
+
+  "used-enName": "الاسم الانجليزي موجود بالفعل",
+  "used-arName": "الاسم العربي موجود بالفعل",
+
+  "incomplete-data": "بيانات غير مكتملة",
+  "rewf-auto-outgoing": "لا يمكن أن يكون الإجراء الصادر في REWF تلقائيًا",
+  "inactive-request": "تم إلغاء تنشيط الطلب",
+  "running-request": "الطلب له بالفعل مثيل قيد التشغيل",
+  "action-duplication": "تم تنفيذ هذا الإجراء بالفعل",
+  "forbidden-action": "هذا العمل ممنوع",
+
+  "self-message": "لا يمكنك إرسال رسالة إلى نفسك",
+
+  "first-name-required": "الإسم الأول مطلوب",
+  "first-name-minimum": "يجب أن يحتوي الاسم الأول على 3 أحرف على الأقل",
+  "first-name-maximum": "يجب ألا يزيد الاسم الأول عن 30 حرفًا",
+  "first-name-alphanumeric": "يجب أن يكون الاسم الأول أبجديًا رقميًا",
+
+  "last-name-required": "إسم العائلة مطلوب",
+  "last-name-minimum": "يجب أن يحتوي الاسم الأخير على 3 أحرف على الأقل",
+  "last-name-maximum": "يجب ألا يزيد الاسم الأخير عن 30 حرفًا",
+  "last-name-alphanumeric": "يجب أن يكون الاسم الأخير أبجديًا رقميًا",
+
+  "middle-name-minimum": "يجب أن يحتوي الاسم الأوسط على 3 أحرف على الأقل",
+  "middle-name-maximum": "يجب ألا يزيد الاسم الأوسط عن 30 حرفًا",
+  "middle-name-alphanumeric": "يجب أن يكون الاسم الأوسط أبجديًا رقميًا",
+
+  "username-required": "اسم المستخدم مطلوب",
+  "username-minimum": "يجب أن يحتوي اسم المستخدم على 2 أحرف على الأقل",
+  "username-maximum": "يجب ألا يزيد اسم المستخدم عن 30 حرفًا",
+  "username-alphanumeric": "يجب أن يكون اسم المستخدم أبجديًا رقميًا",
+
+  "password-required": "كلمة المرور مطلوبة",
+  "password-minimum": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل",
+  "password-maximum": "يجب ألا تزيد كلمة المرور عن 50 حرفًا",
+  "password-match": "يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل وحرف كبير ورقم واحد",
+
+  "email-incorrect": "غير صحيح البريد الإلكتروني",
+  "email-required": "البريد الالكتروني مطلوب",
+
+  "mobile-required": "الجوال مطلوب"
+}

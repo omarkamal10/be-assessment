@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  pgdb:
+    image: postgres:14
+    restart: always
+    container_name: bosta_postgres
+    ports:
+      - "5432:5432"
+    env_file:
+      - .postgres
+    volumes:
+      - bosta_pgdata:/var/lib/postgresql/data
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bosta_backend
+    depends_on:
+      - pgdb
+    env_file:
+      - .env
+    ports:
+      - "9000:9000"
+volumes:
+  bosta_pgdata:
