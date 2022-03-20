@@ -20,8 +20,47 @@ export default (connection, DataTypes) =>
         allowNull: false,
       },
       protocol: {
-        type: DataTypes.STRING(255),
+        type: DataTypes.ENUM("HTTP", "HTTPS", "TCP"),
         allowNull: false,
+        default: "HTTP",
+      },
+      path: {
+        type: DataTypes.STRING(255),
+        allowNull: true,
+      },
+      port: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
+      webhook: {
+        type: DataTypes.STRING(255),
+        allowNull: true,
+      },
+      timeout: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        default: 5 * 1000,
+      },
+      interval: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        default: 1000 * 60 * 10,
+      },
+      threshold: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
+      authentication: {
+        type: DataTypes.STRING(255),
+        allowNull: true,
+      },
+      httpHeaders: {
+        type: DataTypes.STRING(255),
+        allowNull: true,
+      },
+      assert: {
+        type: DataTypes.STRING(255),
+        allowNull: true,
       },
       tags: {
         type: DataTypes.STRING,
