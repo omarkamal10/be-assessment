@@ -1,8 +1,6 @@
-import urlExists from "url-exists-deep";
-import { Protocols } from "../../helpers";
+import { Protocols, updateReport } from "../../helpers";
 import Database from "../../../infrastructure/Database";
 import { sendMailDownURL, sendMailUpURL } from "../../services/Mail.Service";
-import url from "url";
 import axios from "axios";
 
 export const createURLCheck = async (args, userId) => {
@@ -10,6 +8,9 @@ export const createURLCheck = async (args, userId) => {
     const url = await Database.URLs.create({
       userId,
       ...args,
+    });
+    const urlCheckInstance = await Database.UserURLChecks.create({
+      urlId: url.id,
     });
     return Protocols.appResponse({ data: url });
   } catch (err) {
@@ -89,36 +90,41 @@ export const urlCheck = async ({ urlToCheckId }, userId) => {
       }
     );
 
-    const urlToCheck = await Database.URLs.findOne({
+    const urlDetails = await Database.URLs.findOne({
       where: { id: urlToCheckId, userId },
     });
-    console.log(urlToCheck.url);
+
+    const urlCheckInstance = await Database.UserURLChecks.findOne({
+      where: { urlId: urlToCheckId },
+    });
     const user = await Database.Users.findByPk(userId);
+    const url = urlDetails.protocol.toLowerCase() + "://" + urlDetails.url;
 
     const urlCheck = axios
-      .get(urlToCheck.protocol + "://" + urlToCheck.url)
+      .get(url)
       .then(async function (response) {
         // handle success
-        const urlCheckObject = {
-          urlId: urlToCheck.id,
-          visitedAt: new Date(),
-          responseTime: response.duration,
-          successful: true,
-        };
-        sendMailUpURL(user.email, urlToCheck);
-        const urlCheck = await Database.UserURLChecks.create(urlCheckObject);
+        const urlCheck = updateReport(
+          response,
+          urlCheckInstance,
+          urlDetails,
+          true,
+          null
+        );
+        sendMailUpURL(user.email, urlDetails.url);
         return urlCheck;
       })
-      .catch(async function (response, error) {
+      .catch(async function (error) {
         // handle that url is down or doesn't exist
-        const urlCheckObject = {
-          urlId: urlToCheck.id,
-          visitedAt: new Date(),
-          responseTime: response.duration,
-          successful: false,
-        };
-        sendMailDownURL(user.email, urlToCheck.url, error);
-        const urlCheck = await Database.UserURLChecks.create(urlCheckObject);
+        console.log(error);
+        const urlCheck = updateReport(
+          null,
+          urlCheckInstance,
+          urlDetails,
+          null,
+          true
+        );
+        sendMailDownURL(user.email, urlDetails.url, error);
         return urlCheck;
       });
     return Protocols.appResponse({ data: urlCheck });

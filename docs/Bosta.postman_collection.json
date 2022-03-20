@@ -12,14 +12,7 @@
 					"name": "Register",
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "POST",
 						"header": [],
@@ -124,7 +117,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"google\",\r\n    \"url\":\"www.google.com\",\r\n    \"protocol\":\"https\",\r\n    \"tags\":\"search engine\"\r\n}",
+							"raw": "{\r\n    \"name\":\"google2\",\r\n    \"url\":\"www.google.com\",\r\n    \"protocol\":\"HTTPS\",\r\n    \"interval\":10,\r\n    \"tags\":\"search engine\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -163,7 +156,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"urlToCheckId\":1\r\n}",
+							"raw": "{\r\n    \"urlToCheckId\":2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -171,7 +164,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{bosta-URL}}/api/v1/url-check/",
+							"raw": "{{bosta-URL}}/api/v1/url-check/check",
 							"host": [
 								"{{bosta-URL}}"
 							],
@@ -179,7 +172,7 @@
 								"api",
 								"v1",
 								"url-check",
-								""
+								"check"
 							]
 						}
 					},
@@ -201,7 +194,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{bosta-URL}}/api/v1/url-check/tags/search",
+							"raw": "{{bosta-URL}}/api/v1/url-check/tags/search engine",
 							"host": [
 								"{{bosta-URL}}"
 							],
@@ -210,7 +203,7 @@
 								"v1",
 								"url-check",
 								"tags",
-								"search"
+								"search engine"
 							]
 						}
 					},
@@ -249,8 +242,39 @@
 				{
 					"name": "Modify URL",
 					"request": {
-						"method": "GET",
-						"header": []
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"apple\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{bosta-URL}}/api/v1/url-check/1",
+							"host": [
+								"{{bosta-URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"url-check",
+								"1"
+							]
+						}
 					},
 					"response": []
 				}

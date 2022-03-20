@@ -10,17 +10,30 @@ export default (connection, DataTypes) =>
           key: "id",
         },
       },
-      visitedAt: {
-        type: DataTypes.DATE,
+      status: {
+        type: DataTypes.ENUM("Up", "Down"),
         allowNull: true,
+        defaultValue: "Up",
       },
+      failures: { type: DataTypes.INTEGER, allowNull: true, defaultValue: 0 },
+      success: { type: DataTypes.INTEGER, allowNull: true, defaultValue: 0 },
+      availability: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        defaultValue: 0,
+      },
+      outages: { type: DataTypes.INTEGER, allowNull: true, defaultValue: 0 },
+      downtime: { type: DataTypes.INTEGER, allowNull: true, defaultValue: 0 },
+      uptime: { type: DataTypes.INTEGER, allowNull: true, defaultValue: 0 },
       responseTime: {
         type: DataTypes.INTEGER,
         allowNull: true,
+        defaultValue: 0,
       },
-      successful: {
-        type: DataTypes.BOOLEAN,
+      history: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: true,
+        defaultValue: [],
       },
     },
     {
